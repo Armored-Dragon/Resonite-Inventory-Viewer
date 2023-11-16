@@ -8,4 +8,4 @@ This website uses a JSON file produced by Resonite. In order to use this tool, y
 
 To obtain this file you need to login to your Resonite account and send the Resonite bot the message `/requestRecordUsageJSON`. After you submit this command, Resonite will email you shortly after with an attachment that contains the file you will need.
 
-Once you have your file, continue to [the website](https://armored-dragon.github.io/Resonite-Inventory-Viewer/) and select the `.json` file in the file browser input, and this app should take care of the rest.
+Once you have your file, continue to [the website](https://armored-dragon.github.io/Resonite-Inventory-Viewer/index) and select the `.json` file in the file browser input, and this app should take care of the rest.
