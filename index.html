@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Resonite Inventory Viewer</title>
+  </head>
+  <body>
+    <dialog id="item-info-modal" class="rounded-corners">
+      <div class="content">
+        <div class="info">
+          <div class="left">
+            <div class="thumbnail">
+              <img data-thumbnail class="rounded-corners" src="" />
+            </div>
+          </div>
+          <div class="right">
+            <div class="entry">
+              <span class="title">Name</span>
+              <span data-name class="value"></span>
+            </div>
+            <div class="entry">
+              <span class="title">ID</span>
+              <span data-id class="value"></span>
+            </div>
+            <div class="entry">
+              <span class="title">Size</span>
+              <span data-size class="value"></span>
+            </div>
+            <div class="entry">
+              <span class="title">Path</span>
+              <span data-path class="value"></span>
+            </div>
+            <div class="entry">
+              <span class="title">Assets</span>
+              <span data-assets class="value"></span>
+            </div>
+            <div class="entry">
+              <span class="title">Unique Assets</span>
+              <span data-unique-assets class="value"></span>
+            </div>
+            <div class="entry">
+              <span class="title">Message Item?</span>
+              <span data-message-item class="value"></span>
+            </div>
+          </div>
+        </div>
+        <div class="controls">
+          <button class="rounded-corners" onclick="closeItemModal()">Close</button>
+        </div>
+      </div>
+    </dialog>
+
+    <div class="page">
+      <div id="file-selection-modal" class="import-notice rounded-corners">
+        <h1>Select your inventory .JSON file</h1>
+        <input id="file-import" class="rounded-corners" type="file" />
+        <sub>Inventory browser created by <a href="https://armoreddragon.com">Armored Dragon</a></sub>
+      </div>
+
+      <div id="file-browser" class="file-list hidden">
+        <div class="storage-overview rounded-corners">
+          <div class="title">
+            Storage Usage <span class="measurement"><span id="total-used-space">0 MB</span><span class="storage-quota">/ 1 GB</span></span>
+          </div>
+
+          <progress class="storage-bar rounded-corners" value="0" max="1"></progress>
+        </div>
+
+        <div class="filters">
+          <!-- <select class="rounded-corners">
+            <option disabled>Order</option>
+            <option>Estimate Size Asc</option>
+            <option>Estimate Size Desc</option>
+          </select> -->
+
+          <label><input type="checkbox" id="only-message-items" value="value" />Only Message Items</label>
+
+          <div class="search rounded-corners">
+            <input id="search" class="rounded-corners" type="text" placeholder="Search..." />
+          </div>
+        </div>
+
+        <div class="item-list"></div>
+      </div>
+    </div>
+  </body>
+
+  <template id="entry-template">
+    <div class="entry rounded-corners" data-info="">
+      <div class="thumbnail">
+        <img class="rounded-corners" src="" />
+      </div>
+      <div class="info">
+        <div class="id hidden"></div>
+        <div class="title"></div>
+        <div class="info-blob">Size:<span class="value"></span></div>
+        <div class="info-blob">Linked Assets:<span class="value"></span></div>
+        <div class="info-blob">Unique Assets:<span class="value"></span></div>
+      </div>
+    </div>
+  </template>
+
+  <script src="./index.js"></script>
+</html>
