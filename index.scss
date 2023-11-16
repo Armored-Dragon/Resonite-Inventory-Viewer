@@ -173,6 +173,7 @@ body {
         background-color: $n-secondary;
         padding: 5px;
         margin-bottom: 20px;
+        cursor: pointer;
 
         .thumbnail {
           width: 200px;
@@ -208,6 +209,10 @@ body {
             }
           }
         }
+      }
+
+      .entry:hover {
+        scale: 1.05;
       }
     }
   }

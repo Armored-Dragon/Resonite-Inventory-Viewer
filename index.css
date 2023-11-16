@@ -145,6 +145,7 @@ body {
   background-color: #2b2f35;
   padding: 5px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 .page .file-list .item-list .entry .thumbnail {
   width: 200px;
@@ -174,6 +175,9 @@ body {
 .page .file-list .item-list .entry .info .info-blob .value {
   color: white;
   margin-left: auto;
+}
+.page .file-list .item-list .entry:hover {
+  scale: 1.05;
 }
 
 dialog {
