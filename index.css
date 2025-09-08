@@ -1,270 +1,76 @@
 body {
   margin: 0;
-  background-color: #11151d;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
-  color: #e1e1e0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  flex-direction: column;
 }
-
-.rounded-corners {
-  border-radius: 10px;
-}
-
-.page {
+body .container {
   width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-.page .import-notice {
+  background-color: rgb(235, 235, 235);
   margin: auto;
-  width: 600px;
-  min-height: 100px;
-  background-color: #2b2f35;
-  padding: 5px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-.page .import-notice h1 {
-  color: #e1e1e0;
-  font-weight: bold;
-  font-size: 22px;
-  text-align: center;
-}
-.page .import-notice input {
-  margin: auto;
-  color: #cecece;
-  text-align: center;
-  padding: 5px;
-  box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.3137254902);
-  margin-bottom: 15px;
-}
-.page .import-notice sub {
-  text-align: center;
-  color: #e1e1e0;
-}
-.page .import-notice sub a {
-  color: #ff6600;
-}
-.page .file-list {
-  display: flex;
-  flex-direction: column;
-}
-.page .file-list .storage-overview {
-  background-color: #2b2f35;
-  width: 100%;
-  margin-top: 20px;
-  padding: 10px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-.page .file-list .storage-overview .title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: row;
-}
-.page .file-list .storage-overview .title .measurement {
-  margin-left: auto;
-  font-size: 22px;
-}
-.page .file-list .storage-overview .title .measurement .storage-quota {
-  font-size: 16px;
-  color: #86888b;
-}
-.page .file-list .storage-overview .storage-bar {
-  height: 30px;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.6392156863);
-  padding: 5px;
-  box-sizing: border-box;
-  border: 0;
-}
-.page .file-list .storage-overview .storage-bar::-moz-progress-bar,
-.page .file-list .storage-overview .storage-bar::-webkit-progress-bar {
-  background-color: rgb(0, 162, 255);
+  margin-top: 1rem;
   border-radius: 5px;
 }
-.page .file-list .filters {
+body .container .file-about {
   width: 100%;
-  height: 30px;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
+  padding: 1rem;
 }
-.page .file-list .filters select {
-  background-color: #2b2f35;
-  border: 0;
-  padding: 0 10px;
-  width: 200px;
-  height: 100%;
-  color: white;
-  margin-right: 5px;
-}
-.page .file-list .filters label {
-  margin: auto 0;
-}
-.page .file-list .filters .search {
-  width: 50%;
-  height: 100%;
-  background-color: #2b2f35;
-  margin-left: auto;
-}
-.page .file-list .filters .search input {
-  background-color: rgba(0, 0, 0, 0.6392156863);
-  border: 0;
-  padding: 0;
-  outline: 0;
-  color: white;
-  height: 100%;
+body .container .table {
   width: 100%;
-  text-indent: 10px;
 }
-.page .file-list .filters .search input::-moz-placeholder {
-  font-style: italic;
-}
-.page .file-list .filters .search input::placeholder {
-  font-style: italic;
-}
-.page .file-list .item-list {
-  display: flex;
-  flex-flow: row wrap;
-  place-content: space-around;
+body table {
   width: 100%;
-  height: -moz-fit-content;
-  height: fit-content;
-  margin-top: 20px;
+  table-layout: fixed;
 }
-.page .file-list .item-list .entry {
-  width: 200px;
-  background-color: #2b2f35;
-  padding: 5px;
-  margin-bottom: 20px;
-  cursor: pointer;
+body table tbody th,
+body table tbody td,
+body table thead th,
+body table thead td {
+  width: 20%;
 }
-.page .file-list .item-list .entry .thumbnail {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto 5px auto;
-  display: flex;
-}
-.page .file-list .item-list .entry .thumbnail img {
-  max-height: 100%;
-  max-width: 100%;
-  margin: auto;
-}
-.page .file-list .item-list .entry .info .title {
-  margin-bottom: 10px;
-  color: #61d1fa;
+body table tbody .small-col,
+body table thead .small-col {
+  width: 7%;
   text-align: center;
-  white-space: nowrap;
+}
+body table tbody {
+  width: 100%;
+}
+body table tbody tr:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+body table tbody td {
+  -webkit-line-clamp: 1;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-wrap: nowrap;
 }
-.page .file-list .item-list .entry .info .info-blob {
-  color: gray;
+body tbody .actions {
   display: flex;
-  flex-direction: row;
-  margin-bottom: 5px;
 }
-.page .file-list .item-list .entry .info .info-blob .value {
-  color: white;
-  margin-left: auto;
-}
-.page .file-list .item-list .entry:hover {
-  scale: 1.05;
-}
-
-dialog {
-  background-color: #2b2f35;
-  border: 0;
-  outline: 0;
-}
-dialog .content {
-  display: flex;
-  flex-direction: column;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-dialog .content .info {
-  display: flex;
-  flex-direction: row;
-  width: 700px;
-}
-dialog .content .info .left {
-  margin-right: 10px;
-}
-dialog .content .info .left .thumbnail {
-  width: 200px;
-  height: 200px;
-}
-dialog .content .info .left .thumbnail img {
-  max-width: 100%;
-  max-height: 100%;
-}
-dialog .content .info .right {
-  flex-grow: 1;
-}
-dialog .content .info .right .entry {
-  display: flex;
-  flex-direction: row;
-  color: white;
-  width: 100%;
-  background-color: #1d2024;
-  padding: 5px;
-  box-sizing: border-box;
-}
-dialog .content .info .right .entry .title {
-  color: #bbb;
-}
-dialog .content .info .right .entry .value {
-  margin-left: auto;
-  padding-left: 20px;
-}
-dialog .content .info .right .entry:nth-child(even) {
-  background-color: #191c20;
-}
-dialog .content .controls {
-  display: flex;
-  margin-top: 15px;
-}
-dialog .content .controls button {
+body tbody .actions a {
   margin: auto;
-  padding: 5px;
+}
+body dialog {
+  width: 80%;
+  max-height: 80%;
+  padding: 0;
+}
+body dialog .table {
+  padding: 16px;
+}
+body dialog .button-horizontal {
+  background-color: white;
+  position: sticky;
+  padding: 1rem;
+  bottom: 0;
   box-sizing: border-box;
-  flex-grow: 1;
-  cursor: pointer;
-  background-color: #ff7676;
-  border: 0;
-  font-weight: bold;
+  display: flex;
 }
-
-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.6392156863);
-}
-
-.hidden {
-  display: none !important;
-}
-
-@media screen and (max-width: 1200px) {
-  .page {
-    width: 95%;
-  }
-}
-@media screen and (max-width: 800px) {
-  dialog .content .info {
-    flex-direction: column;
-    width: 100%;
-  }
-  dialog .content .info .left .thumbnail {
-    margin: auto;
-    width: 100%;
-    margin-bottom: 10px;
-  }
+body dialog .button-horizontal button {
+  padding: 1rem;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 0.5rem 1rem;
 }
