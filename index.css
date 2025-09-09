@@ -53,12 +53,20 @@ body tbody .actions a {
   margin: auto;
 }
 body dialog {
-  width: 80%;
+  max-width: 80%;
   max-height: 80%;
   padding: 0;
 }
 body dialog .table {
   padding: 16px;
+  text-align: center;
+}
+body dialog table {
+  width: auto;
+}
+body dialog table td,
+body dialog table th {
+  padding: 0 2em;
 }
 body dialog .button-horizontal {
   background-color: white;
