@@ -39,10 +39,10 @@ body #file-selection input {
   margin-bottom: 1rem;
 }
 body #file-selection .subtitle .me {
-  color: #ff6600;
+  color: #db2e06;
 }
 body #file-selection .subtitle .them {
-  color: cyan;
+  color: #0040ff;
 }
 body table {
   width: 100%;
