@@ -3,6 +3,7 @@ const qs = (selector) => document.querySelector(selector);
 
 let fileList = [];
 let assets = [];
+let searchList = [];
 
 const fileImportInput = qs('#json-importer');
 const itemAssetList = qs('#item-asset-list');
@@ -127,12 +128,27 @@ function hideFileSelection() {
 
 function showInspectionPage() {
 	qs('#chart').classList.add("hidden");
+	qs(`#chart-search`).classList.add("hidden");
 	qs(`#item-inspection`).classList.remove("hidden");
 	qs(`#item-inspection-nav`).classList.remove("hidden");
 }
 
 function showItemList() {
 	qs('#chart').classList.remove("hidden");
+	qs(`#chart-search`).classList.remove("hidden");
 	qs(`#item-inspection`).classList.add("hidden");
 	qs(`#item-inspection-nav`).classList.add("hidden");
+}
+
+function search() {
+	const searchTerm = qs('#search-input').value.toLowerCase();
+	searchList = [];
+	searchList = fileList.filter((item) => item.name.toLowerCase().includes(searchTerm));
+	displayItemList(searchList);
+}
+
+function displayItemList(list) {
+	const tbody = qs('#chart tbody');
+	tbody.innerHTML = '';
+	list.forEach(insertItemElement);
 }
