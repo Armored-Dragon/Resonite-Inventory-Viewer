@@ -12,6 +12,10 @@ body .container {
   margin-top: 1rem;
   border-radius: 5px;
 }
+body .container .center {
+  padding: 1rem;
+  box-sizing: border-box;
+}
 body .container .file-about {
   width: 100%;
   padding: 1rem;

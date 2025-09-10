@@ -28,7 +28,7 @@ function openModalToAssetList(item_id) {
 	qs(`#inspect-total-size`).innerText = fileListItem.totalSize;
 	qs(`#inspect-real-size`).innerText = bytesToMB(fileListItem.uniqueBytes);
 	qs(`#item-inspection .thumbnail img`).src = fileListItem.thumbnail;
-	qs(`#item-inspection`).classList.remove("hidden");
+	showInspectionPage();
 }
 
 function sortByByteSize(arr) {
@@ -37,6 +37,8 @@ function sortByByteSize(arr) {
 
 function readInventoryJSON() {
 	if (fileImportInput.files.length <= 0) return;
+	hideFileSelection();
+	showItemList();
 
 	let reader = new FileReader();
 	reader.addEventListener("load", () => handleFileContents(JSON.parse(reader.result)));
@@ -51,7 +53,6 @@ function readInventoryJSON() {
 				name: item.name,
 				assetManifest: item.assetManifest,
 				uniqueAssetManifest: [],
-				uniqueAssets: 0,
 				assets: 0,
 				totalBytes: 0,
 				uniqueBytes: 0,
@@ -71,7 +72,6 @@ function readInventoryJSON() {
 
 				itemResponse.uniqueAssetManifest.push(asset);
 				itemResponse.uniqueBytes += asset.bytes;
-				itemResponse.uniqueAssets++;
 			})
 
 			itemList.push(itemResponse);
@@ -91,7 +91,7 @@ function insertItemElement(item) {
 	td[0].innerHTML = `<a onclick="openModalToAssetList('${item.id}')" href="#">${item.name}</a>`;
 	td[1].textContent = item.id;
 	td[2].textContent = item.assets;
-	td[3].textContent = item.uniqueAssets;
+	td[3].textContent = item.uniqueAssetManifest.length;
 	td[4].textContent = item.totalSize;
 	const tbody = qs('#chart tbody');
 	tbody.appendChild(clone);
@@ -119,4 +119,20 @@ function bytesToMB(bytes) {
 
 function getAssetThumbnail(uri) {
 	return `https://assets.resonite.com/${uri.replace("resdb:///", "").replace(".webp", "")}`;
+}
+
+function hideFileSelection() {
+	qs(`#file-selection`).classList.add("hidden");
+}
+
+function showInspectionPage() {
+	qs('#chart').classList.add("hidden");
+	qs(`#item-inspection`).classList.remove("hidden");
+	qs(`#item-inspection-nav`).classList.remove("hidden");
+}
+
+function showItemList() {
+	qs('#chart').classList.remove("hidden");
+	qs(`#item-inspection`).classList.add("hidden");
+	qs(`#item-inspection-nav`).classList.add("hidden");
 }

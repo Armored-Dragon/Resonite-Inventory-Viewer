@@ -13,17 +13,24 @@
     <noscript>
         <h1>Javascript is required to use this application.</h1>
     </noscript>
-    <div class="container">
+
+    <div id="file-selection" class="container">
         <div class="file-about">
             <input id="json-importer" type="file">
             <span>Upload your JSON File</span>
         </div>
     </div>
 
+    <div id="item-inspection-nav" class="container hidden">
+        <div class="center">
+            <a href="#" onclick="showItemList()">Go Back</a>
+        </div>
+    </div>
+
     <div id="item-inspection" class="container item-inspection hidden">
         <div class="quick-info">
             <div class="thumbnail">
-                <img src="">
+                <img src="" alt="Asset thumbnail">
             </div>
             <div class="details">
                 <table>
@@ -88,7 +95,7 @@
         </div>
 
     </div>
-    <div id="chart" class="container">
+    <div id="chart" class="container hidden">
         <table>
             <thead>
                 <tr>
@@ -103,31 +110,13 @@
         </table>
     </div>
 
-
-    <!-- <dialog id="item-asset-list">
-        <div class="table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Hash</th>
-                        <th class="small-col">Size</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-        <div class="button-horizontal">
-            <button onclick="closeDialog()">Close</button>
-        </div>
-    </dialog> -->
-
     <template id="item-listing-template">
         <tr>
-            <td id="template-name"><a href="#">Awesome Item</a></td>
-            <td id="template-id">asdkjfha klsjdhfa uioshdfakljsd</td>
-            <td class="small-col" id="template-total-assets"><a href="#">6502</a></td>
-            <td class="small-col" id="template-unique-assets"><a href="#">215</a></td>
-            <td class="small-col" id="template-estimate-size">30.55 MiB</td>
+            <td id="template-name"><a href="#"></a></td>
+            <td id="template-id"></td>
+            <td class="small-col" id="template-total-assets"><a href="#"></a></td>
+            <td class="small-col" id="template-unique-assets"><a href="#"></a></td>
+            <td class="small-col" id="template-estimate-size"></td>
         </tr>
     </template>
 
