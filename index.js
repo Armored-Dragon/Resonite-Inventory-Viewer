@@ -10,18 +10,25 @@ const itemAssetList = qs('#item-asset-list');
 fileImportInput.addEventListener("change", readInventoryJSON);
 
 function openModalToAssetList(item_id) {
-	const tbody = qs('#item-asset-list tbody');
-	tbody.innerHTML = '';
+	const tbodyAll = qs('#inspect-all-assets tbody');
+	const tbodyUnique = qs('#inspect-unique-assets tbody');
+	tbodyAll.innerHTML = '';
+	tbodyUnique.innerHTML = '';
 	const fileListItem = fileList.find((listItem) => listItem.id == item_id);
 	fileListItem.assetManifest = sortByByteSize(fileListItem.assetManifest);
-	fileListItem.assetManifest.forEach(insertAssetElement);
-	itemAssetList.showModal();
-}
+	fileListItem.uniqueAssetManifest = sortByByteSize(fileListItem.uniqueAssetManifest);
 
-function findAllInstancesOfAssetId(asset_id) { }
-function openModal() { }
-function closeDialog() {
-	itemAssetList.close();
+	fileListItem.assetManifest.forEach((elem) => insertAssetElement(elem, false));
+	fileListItem.uniqueAssetManifest.forEach((elem) => insertAssetElement(elem, true));
+
+	qs(`#inspect-name`).innerText = fileListItem.name;
+	qs(`#inspect-location`).innerText = fileListItem.location;
+	qs(`#inspect-total-assets`).innerText = fileListItem.assets;
+	qs(`#inspect-unique-assets`).innerText = fileListItem.uniqueAssetManifest.length;
+	qs(`#inspect-total-size`).innerText = fileListItem.totalSize;
+	qs(`#inspect-real-size`).innerText = bytesToMB(fileListItem.uniqueBytes);
+	qs(`#item-inspection .thumbnail img`).src = fileListItem.thumbnail;
+	qs(`#item-inspection`).classList.remove("hidden");
 }
 
 function sortByByteSize(arr) {
@@ -43,23 +50,33 @@ function readInventoryJSON() {
 				id: item.id,
 				name: item.name,
 				assetManifest: item.assetManifest,
+				uniqueAssetManifest: [],
 				uniqueAssets: 0,
 				assets: 0,
 				totalBytes: 0,
-				totalSize: ""
+				uniqueBytes: 0,
+				totalSize: "",
+				location: item.path,
+				thumbnail: item.thumbnailUri ? getAssetThumbnail(item.thumbnailUri) : null
 			}
 			itemResponse.assetManifest = itemResponse.assetManifest.map(obj => ({ hash: obj.hash, totalBytes: obj.bytes }));
 
 			item.assetManifest.forEach((asset) => {
 				const assetIsInArray = assets.some((obj) => obj.hash === asset.hash);
 				itemResponse.assets++;
+				itemResponse.totalBytes += asset.bytes;
 				if (assetIsInArray) return;
 
 				assets.push(asset);
-				itemResponse.totalBytes += asset.bytes;
+
+				itemResponse.uniqueAssetManifest.push(asset);
+				itemResponse.uniqueBytes += asset.bytes;
 				itemResponse.uniqueAssets++;
 			})
+
 			itemList.push(itemResponse);
+			itemResponse.uniqueAssetManifest = itemResponse.uniqueAssetManifest.map(obj => ({ hash: obj.hash, totalBytes: obj.bytes }));
+
 			itemResponse.totalSize = bytesToMB(itemResponse.totalBytes);
 		})
 		fileList = sortByByteSize(itemList)
@@ -80,8 +97,14 @@ function insertItemElement(item) {
 	tbody.appendChild(clone);
 }
 
-function insertAssetElement(asset) {
-	const tbody = qs('#item-asset-list tbody');
+function insertAssetElement(asset, isUnique) {
+	let tbody;
+
+	if (isUnique) {
+		tbody = qs('#inspect-unique-assets tbody');
+	} else {
+		tbody = qs('#inspect-all-assets tbody');
+	}
 	const template = qs("#asset-listing-template");
 	const clone = template.content.cloneNode(true);
 	let td = clone.querySelectorAll("td");
@@ -92,4 +115,8 @@ function insertAssetElement(asset) {
 
 function bytesToMB(bytes) {
 	return `${(bytes / 1000000).toFixed(2)} MB`
+}
+
+function getAssetThumbnail(uri) {
+	return `https://assets.resonite.com/${uri.replace("resdb:///", "").replace(".webp", "")}`;
 }

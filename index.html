@@ -18,6 +18,74 @@
         </div>
     </div>
 
+    <div id="item-inspection" class="container item-inspection hidden">
+        <div class="quick-info">
+            <div class="thumbnail">
+                <img src="">
+            </div>
+            <div class="details">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td id="inspect-name"></td>
+                        </tr>
+                        <tr>
+                            <td>Location</td>
+                            <td id="inspect-location"></td>
+                        </tr>
+                        <tr>
+                            <td>Total Assets</td>
+                            <td id="inspect-total-assets"></td>
+                        </tr>
+                        <tr>
+                            <td>Unique Assets</td>
+                            <td id="inspect-unique-assets"></td>
+                        </tr>
+                        <tr>
+                            <td>Estimate Total Size</td>
+                            <td id="inspect-total-size"></td>
+                        </tr>
+                        <tr>
+                            <td>Estimate Real Size</td>
+                            <td id="inspect-real-size"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="asset-list">
+            <h2>Unique assets</h2>
+            <table id="inspect-unique-assets">
+                <thead>
+                    <tr>
+                        <th>Hash</th>
+                        <th class="small-col">Size</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <h2>All assets</h2>
+            <table id="inspect-all-assets">
+                <thead>
+                    <tr>
+                        <th>Hash</th>
+                        <th class="small-col">Size</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </div>
     <div id="chart" class="container">
         <table>
             <thead>
@@ -33,7 +101,8 @@
         </table>
     </div>
 
-    <dialog id="item-asset-list">
+
+    <!-- <dialog id="item-asset-list">
         <div class="table">
             <table>
                 <thead>
@@ -48,7 +117,7 @@
         <div class="button-horizontal">
             <button onclick="closeDialog()">Close</button>
         </div>
-    </dialog>
+    </dialog> -->
 
     <template id="item-listing-template">
         <tr>
