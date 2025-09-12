@@ -17,12 +17,36 @@ body {
       box-sizing: border-box;
     }
 
-
     .table {
       width: 100%;
     }
 
   }
+
+
+  #chart-search {
+    .center {
+      display: flex;
+      flex-direction: row;
+
+      .filter {
+        display: flex;
+        margin: 0 1rem;
+        box-sizing: border-box;
+        text-align: center;
+
+        label {
+          height: fit-content;
+          margin: auto;
+        }
+
+        input[type="checkbox"] {
+          width: inherit;
+        }
+      }
+    }
+  }
+
 
   #file-selection {
     margin: auto;

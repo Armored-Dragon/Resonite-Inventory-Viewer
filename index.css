@@ -19,6 +19,24 @@ body .container .center {
 body .container .table {
   width: 100%;
 }
+body #chart-search .center {
+  display: flex;
+  flex-direction: row;
+}
+body #chart-search .center .filter {
+  display: flex;
+  margin: 0 1rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+body #chart-search .center .filter label {
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: auto;
+}
+body #chart-search .center .filter input[type=checkbox] {
+  width: inherit;
+}
 body #file-selection {
   margin: auto;
   width: 50rem;
