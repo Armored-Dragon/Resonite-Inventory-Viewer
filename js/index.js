@@ -22,7 +22,7 @@ function openItemInspectionPage(item_id) {
 	fileListItem.uniqueAssetManifest.forEach((elem) => insertAssetElement(elem, true));
 
 	qs(`#inspect-name`).innerText = fileListItem.name;
-	qs(`#inspect-location`).innerText = fileListItem.location;
+	qs(`#inspect-path`).innerText = fileListItem.path;
 	qs(`#inspect-total-assets`).innerText = fileListItem.assets;
 	qs(`#inspect-unique-assets`).innerText = fileListItem.uniqueAssetManifest.length;
 	qs(`#inspect-total-size`).innerText = fileListItem.totalBytesString;
