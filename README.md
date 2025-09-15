@@ -1,5 +1,7 @@
 # Resonite-Inventory-Viewer
 
+[Use the tool here!](https://armored-dragon.github.io/Resonite-Inventory-Viewer/index)
+
 This is a simple in-browser inventory viewer for Resonite. The goal for this app is to make it easier to find out what is eating so much storage space in a given account.
 
 > [!IMPORTANT]  

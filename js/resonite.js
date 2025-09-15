@@ -9,19 +9,14 @@ class Resonite {
 
 		inventoryJSON.forEach((item) => {
 			let itemResponse = {
-				id: item.id,
-				name: item.name,
-				assetManifest: item.assetManifest,
-				uniqueAssetManifest: [],
+				...item,
+				thumbnail: item.thumbnailUri ? this.#getAssetThumbnail(item.thumbnailUri) : null,
 				assets: 0,
 				totalBytes: 0,
 				totalBytesString: "",
 				uniqueBytes: 0,
 				uniqueBytesString: "",
-				location: item.path,
-				tags: item.tags,
-				isForPatrons: item.isForPatrons,
-				thumbnail: item.thumbnailUri ? this.#getAssetThumbnail(item.thumbnailUri) : null,
+				uniqueAssetManifest: [],
 			};
 			itemResponse.assetManifest = itemResponse.assetManifest.map((obj) => ({ hash: obj.hash, totalBytes: obj.bytes, totalBytesString: this.#bytesToMB(obj.bytes) }));
 

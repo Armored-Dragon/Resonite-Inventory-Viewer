@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="./index.css" />
-		<script async src="./resonite.js"></script>
-		<script async src="./index.js"></script>
+		<link rel="stylesheet" href="./css/index.css" />
+		<script async src="./js/resonite.js"></script>
+		<script async src="./js/index.js"></script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 		<title>Resonite Inventory Viewer</title>
 	</head>
@@ -49,8 +49,8 @@
 								<td id="inspect-name"></td>
 							</tr>
 							<tr>
-								<td>Location</td>
-								<td id="inspect-location"></td>
+								<td>Path</td>
+								<td id="inspect-path"></td>
 							</tr>
 							<tr>
 								<td>Total Assets</td>
@@ -106,11 +106,11 @@
 				</span>
 				<span class="filter">
 					<label for="isMessage">Message Item</label>
-					<input id="isMessage" type="checkbox" />
+					<input onclick="search()" id="isMessage" type="checkbox" />
 				</span>
 				<span class="filter">
 					<label for="isPatreon">Patreon</label>
-					<input id="isPatreon" type="checkbox" />
+					<input onclick="search()" id="isPatreon" type="checkbox" />
 				</span>
 			</div>
 		</div>
