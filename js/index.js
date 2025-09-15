@@ -23,6 +23,7 @@ function openItemInspectionPage(item_id) {
 
 	qs(`#inspect-name`).innerText = fileListItem.name;
 	qs(`#inspect-path`).innerText = fileListItem.path;
+	qs(`#inspect-id`).innerText = fileListItem.id;
 	qs(`#inspect-total-assets`).innerText = fileListItem.assets;
 	qs(`#inspect-unique-assets`).innerText = fileListItem.uniqueAssetManifest.length;
 	qs(`#inspect-total-size`).innerText = fileListItem.totalBytesString;
@@ -58,6 +59,7 @@ function insertItemElement(item) {
 	td[2].textContent = item.assets;
 	td[3].textContent = item.uniqueAssetManifest.length;
 	td[4].textContent = item.totalBytesString;
+	td[5].textContent = item.uniqueBytesString;
 	const tbody = qs("#chart tbody");
 	tbody.appendChild(clone);
 }
