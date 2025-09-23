@@ -54,11 +54,15 @@ function insertItemElement(item) {
 	const template = qs("#item-listing-template");
 	const clone = template.content.cloneNode(true);
 	let td = clone.querySelectorAll("td");
-	td[0].innerHTML = `<a onclick="openItemInspectionPage('${item.id}')" href="#">${item.name}</a>`;
-	td[1].textContent = item.assets;
-	td[2].textContent = item.uniqueAssetManifest.length;
-	td[3].textContent = item.totalBytesString;
-	td[4].textContent = item.uniqueBytesString;
+
+	const copyIDButton = `<a href='javascript:;' onclick='copyTextToClipboard("${item.id}")' title='Copy ID'><img src='/img/paste.svg'></a>`;
+
+	td[0].innerHTML = copyIDButton;
+	td[1].innerHTML = `<a onclick="openItemInspectionPage('${item.id}')" href="#">${item.name}</a>`;
+	td[2].textContent = item.assets;
+	td[3].textContent = item.uniqueAssetManifest.length;
+	td[4].textContent = item.totalBytesString;
+	td[5].textContent = item.uniqueBytesString;
 	const tbody = qs("#chart tbody");
 	tbody.appendChild(clone);
 }
@@ -109,4 +113,13 @@ function displayItemList(list) {
 	const tbody = qs("#chart tbody");
 	tbody.innerHTML = "";
 	list.forEach(insertItemElement);
+}
+
+function copyTextToClipboard(text) {
+	const textArea = document.createElement("textarea");
+	textArea.value = text;
+	document.body.appendChild(textArea);
+	textArea.select();
+	document.execCommand("copy");
+	document.body.removeChild(textArea);
 }
