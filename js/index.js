@@ -55,11 +55,10 @@ function insertItemElement(item) {
 	const clone = template.content.cloneNode(true);
 	let td = clone.querySelectorAll("td");
 	td[0].innerHTML = `<a onclick="openItemInspectionPage('${item.id}')" href="#">${item.name}</a>`;
-	td[1].textContent = item.id;
-	td[2].textContent = item.assets;
-	td[3].textContent = item.uniqueAssetManifest.length;
-	td[4].textContent = item.totalBytesString;
-	td[5].textContent = item.uniqueBytesString;
+	td[1].textContent = item.assets;
+	td[2].textContent = item.uniqueAssetManifest.length;
+	td[3].textContent = item.totalBytesString;
+	td[4].textContent = item.uniqueBytesString;
 	const tbody = qs("#chart tbody");
 	tbody.appendChild(clone);
 }
