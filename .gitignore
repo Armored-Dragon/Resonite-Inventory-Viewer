@@ -1,1 +1,6 @@
 *.code-workspace
+
+# Don't mistakenly upload your records file! :)
+*.json
+Records*
+records*
