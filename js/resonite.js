@@ -53,7 +53,7 @@ class Resonite {
 	getFilteredList({ name, isMessage, isPublic, isForPatrons, isListed, isReadOnly, isDeleted } = {}) {
 		let filteredList = [...this.itemList];
 
-		if (name) filteredList = filteredList.filter((item) => item.name.toLowerCase().includes(searchTerm));
+		if (name) filteredList = filteredList.filter((item) => item.name.toLowerCase().includes(name.toLowerCase()));
 		if (isMessage) filteredList = filteredList.filter((item) => item.tags.includes("message_item"));
 		if (isPublic) filteredList = filteredList.filter((item) => item.isPublic);
 		if (isForPatrons) filteredList = filteredList.filter((item) => item.isForPatrons);
