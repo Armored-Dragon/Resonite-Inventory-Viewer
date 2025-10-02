@@ -1,7 +1,11 @@
 class Resonite {
 	constructor(inventoryJson) {
 		this.assetList = [];
+		this.assetListSorted = [];
 		this.itemList = this.#formatJSON(inventoryJson);
+
+		this.sortUniqueMode = 0;
+		this.sortTotalMode = 0;
 	}
 
 	#formatJSON(inventoryJSON) {
@@ -51,7 +55,7 @@ class Resonite {
 	}
 
 	getFilteredList({ name, isMessage, isPublic, isForPatrons, isListed, isReadOnly, isDeleted } = {}) {
-		let filteredList = [...this.itemList];
+		let filteredList = this.assetListSorted.length > 0 ? [...this.assetListSorted] : [...this.itemList];
 
 		if (name) filteredList = filteredList.filter((item) => item.name.toLowerCase().includes(name.toLowerCase()));
 		if (isMessage) filteredList = filteredList.filter((item) => item.tags.includes("message_item"));
@@ -64,7 +68,24 @@ class Resonite {
 		return filteredList;
 	}
 
-	sortBySize(arr) {
-		return arr.sort((a, b) => b.totalBytes - a.totalBytes);
+	sortByUniqueSize() {
+		if (this.sortUniqueMode === 0) {
+			this.assetListSorted = this.itemList.sort((a, b) => b.uniqueBytes - a.uniqueBytes);
+			this.sortUniqueMode++;
+		} else {
+			this.assetListSorted = this.itemList.sort((a, b) => a.uniqueBytes - b.uniqueBytes);
+			this.sortUniqueMode = 0;
+		}
+	}
+	sortByTotalSize() {
+		this.assetListSorted = this.itemList.sort((a, b) => b.totalBytes - a.totalBytes);
+
+		if (this.sortTotalMode === 0) {
+			this.assetListSorted = this.itemList.sort((a, b) => b.totalBytes - a.totalBytes);
+			this.sortTotalMode++;
+		} else {
+			this.assetListSorted = this.itemList.sort((a, b) => a.totalBytes - b.totalBytes);
+			this.sortTotalMode = 0;
+		}
 	}
 }

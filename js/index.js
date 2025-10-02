@@ -123,3 +123,13 @@ function copyTextToClipboard(text) {
 	document.execCommand("copy");
 	document.body.removeChild(textArea);
 }
+
+function sortTableByTotalSize() {
+	resonite.sortByTotalSize();
+	search();
+}
+
+function sortTableByUniqueSize() {
+	resonite.sortByUniqueSize();
+	search();
+}
