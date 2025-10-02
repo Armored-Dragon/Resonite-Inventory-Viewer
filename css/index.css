@@ -66,16 +66,15 @@ body table {
   width: 100%;
   table-layout: fixed;
 }
-body table tbody th,
-body table tbody td,
-body table thead th,
-body table thead td {
-  width: 20%;
-}
 body table tbody .small-col,
 body table thead .small-col {
-  width: 7%;
+  width: 8%;
   text-align: center;
+}
+body table tbody .tiny-col,
+body table thead .tiny-col {
+  width: 2%;
+  align-items: center;
 }
 body table tbody {
   width: 100%;

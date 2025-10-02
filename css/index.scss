@@ -87,14 +87,14 @@ body {
     tbody,
     thead {
 
-      th,
-      td {
-        width: 20%;
+      .small-col {
+        width: 8%;
+        text-align: center;
       }
 
-      .small-col {
-        width: 7%;
-        text-align: center;
+      .tiny-col {
+        width: 2%;
+        align-items: center;
       }
     }
 
