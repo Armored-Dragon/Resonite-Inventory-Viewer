@@ -55,7 +55,7 @@ function insertItemElement(item) {
 	const clone = template.content.cloneNode(true);
 	let td = clone.querySelectorAll("td");
 
-	const copyIDButton = `<a href='javascript:;' onclick='copyTextToClipboard("${item.id}")' title='Copy ID'><img src='/img/paste.svg'></a>`;
+	const copyIDButton = `<a href='javascript:;' onclick='copyTextToClipboard("${item.id}")' title='Copy ID'><img src='./img/paste.svg'></a>`;
 
 	td[0].innerHTML = copyIDButton;
 	td[1].innerHTML = `<a onclick="openItemInspectionPage('${item.id}')" href="#">${item.name}</a>`;
