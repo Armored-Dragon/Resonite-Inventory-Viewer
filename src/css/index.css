@@ -1,0 +1,204 @@
+body {
+  margin: 0;
+  background-color: rgb(25.5, 25.5, 25.5);
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  width: 100vw;
+  height: 100vh;
+}
+
+nav {
+  background-color: #333333;
+  margin-bottom: 1rem;
+  height: 50px;
+  border-bottom: 1px solid #ff6600;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+nav .logo-area {
+  height: 100%;
+}
+nav .logo-area img {
+  height: 100%;
+}
+
+.content {
+  background-color: #333333;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.content.full-width {
+  width: 100%;
+  min-height: 5px;
+}
+
+.btn {
+  width: 7rem;
+  display: flex;
+  background-color: rgb(0, 71.4, 153);
+  transition: background-color ease-in-out 0.05s;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+}
+.btn span {
+  margin: auto;
+}
+.btn:hover {
+  background-color: #0077ff;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media screen and (max-width: 1210px) {
+  .content {
+    width: 1000px;
+  }
+}
+@media screen and (max-width: 1010px) {
+  .content {
+    width: 100%;
+  }
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  box-sizing: border-box;
+}
+.header .search {
+  padding: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.header .search input {
+  border: 0;
+  border-radius: 5px;
+  padding: 0.25rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-right: 1rem;
+}
+.header .stat {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.header .stat .stat-title {
+  font-size: 1.25rem;
+  margin: 0 auto;
+}
+.header .stat .stat-value {
+  font-size: 1.5rem;
+  margin: 0 auto;
+}
+
+.header.grid-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.content .file-drop-container {
+  width: 100%;
+  min-height: 200px;
+  background-color: #333333;
+  display: flex;
+}
+.content .file-drop-container div {
+  margin: auto;
+}
+
+#dir-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 0rem 1rem;
+  box-sizing: border-box;
+}
+#dir-container .dir-folder {
+  min-width: 5rem;
+  background-color: rgb(76.5, 76.5, 76.5);
+  border-radius: 5px;
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+  box-sizing: border-box;
+  user-select: none;
+  cursor: pointer;
+  transition: background-color ease-in-out 0.05s;
+}
+#dir-container .dir-folder:hover {
+  background-color: #666666;
+}
+
+.inventory {
+  display: flow-root;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.inventory .folder-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 2rem;
+}
+.inventory .folder-container .folder {
+  width: 100%;
+  height: 2.75rem;
+  background-color: rgb(76.5, 76.5, 76.5);
+  display: flex;
+  border-radius: 5px;
+  transition: background-color ease-in-out 0.05s;
+  cursor: pointer;
+  user-select: none;
+  border: 2px solid #666666;
+}
+.inventory .folder-container .folder span {
+  margin: auto;
+  text-align: center;
+}
+.inventory .folder-container .folder:hover {
+  background-color: #666666;
+}
+.inventory .item-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+.inventory .item-container .item {
+  height: 6rem;
+  background-color: rgb(76.5, 76.5, 76.5);
+  border-radius: 5px;
+  transition: background-color ease-in-out 0.05s;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  overflow: hidden;
+}
+.inventory .item-container .item .thumbnail {
+  height: 100%;
+  width: 30%;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+}
+.inventory .item-container .item .thumbnail img {
+  max-height: 100%;
+  max-width: 100%;
+  margin: auto;
+}
+.inventory .item-container .item .title {
+  padding: 0.25rem;
+  box-sizing: border-box;
+  user-select: none;
+}
+.inventory .item-container .item:hover {
+  background-color: #666666;
+}

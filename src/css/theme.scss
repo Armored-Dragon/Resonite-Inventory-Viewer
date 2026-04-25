@@ -1,0 +1,102 @@
+@use "sass:color";
+$ad-gray1: color.adjust(white, $lightness: -10%);
+$ad-gray2: color.adjust(white, $lightness: -20%);
+$ad-gray3: color.adjust(white, $lightness: -30%);
+$ad-gray4: color.adjust(white, $lightness: -40%);
+$ad-gray5: color.adjust(white, $lightness: -50%);
+$ad-gray6: color.adjust(white, $lightness: -60%);
+$ad-gray7: color.adjust(white, $lightness: -70%);
+$ad-gray8: color.adjust(white, $lightness: -80%);
+$ad-gray9: color.adjust(white, $lightness: -90%);
+
+$ad-blue1: #0077ff;
+$ad-blue2: color.adjust(#0077ff, $lightness: -20%);
+$ad-blue3: color.adjust(#0077ff, $lightness: -30%);
+$ad-blue4: color.adjust(#0077ff, $lightness: -40%);
+$ad-blue5: color.adjust(#0077ff, $lightness: -50%);
+
+$ad-red1: darken(#ff1e00, 10%);
+$ad-red2: darken(#ff1e00, 20%);
+$ad-red3: darken(#ff1e00, 30%);
+$ad-red4: darken(#ff1e00, 40%);
+$ad-red5: darken(#ff1e00, 50%);
+$ad-red6: darken(#ff1e00, 60%);
+$ad-red7: darken(#ff1e00, 70%);
+$ad-red8: darken(#ff1e00, 80%);
+$ad-red9: darken(#ff1e00, 90%);
+
+$ad-primary: #ff6600;
+
+body {
+	margin: 0;
+	background-color: $ad-gray9;
+	color: white;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	width: 100vw;
+	height: 100vh;
+}
+
+nav {
+	background-color: $ad-gray8;
+	margin-bottom: 1rem;
+	height: 50px;
+	border-bottom: 1px solid $ad-primary;
+	padding: 0.5rem;
+	box-sizing: border-box;
+
+	.logo-area {
+		height: 100%;
+
+		img {
+			height: 100%;
+		}
+	}
+}
+
+.content {
+	background-color: $ad-gray8;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.content.full-width {
+	width: 100%;
+	min-height: 5px;
+}
+
+.btn {
+	width: 7rem;
+	display: flex;
+	background-color: $ad-blue2;
+	transition: background-color ease-in-out 0.05s;
+	border-radius: 5px;
+	cursor: pointer;
+	user-select: none;
+
+	span {
+		margin: auto;
+	}
+
+	&:hover {
+		background-color: $ad-blue1;
+	}
+}
+
+.hidden {
+	display: none !important;
+}
+
+@media screen and (max-width: 1210px) {
+	.content {
+		width: 1000px;
+	}
+}
+
+@media screen and (max-width: 1010px) {
+	.content {
+		width: 100%;
+	}
+}
