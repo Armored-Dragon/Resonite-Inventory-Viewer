@@ -1,7 +1,7 @@
 class Resonite {
 	constructor() {
+		this.itemList = [];
 		this.assetList = [];
-		this.assetData = {};
 	}
 
 	loadInventoryFromJSON(inventoryJSON) {
@@ -12,7 +12,7 @@ class Resonite {
 			itemList.push(formattedItem);
 		});
 
-		this.assetList = itemList;
+		this.itemList = itemList;
 	}
 
 	#formatItem(item) {
@@ -32,7 +32,7 @@ class Resonite {
 		itemResponse.assetManifest = itemResponse.assetManifest.map((obj) => ({
 			hash: obj.hash,
 			totalBytes: obj.bytes,
-			totalBytesString: this.#bytesToMB(obj.bytes),
+			totalBytesString: this.bytesToMB(obj.bytes),
 		}));
 
 		item.assetManifest.forEach((asset) => {
@@ -52,7 +52,7 @@ class Resonite {
 		return itemResponse;
 	}
 
-	#bytesToMB(bytes) {
+	bytesToMB(bytes) {
 		return `${(bytes / 1000000).toFixed(2)} MB`;
 	}
 
@@ -73,5 +73,5 @@ class Resonite {
 		return `https://assets.resonite.com/${uri.replace("resdb:///", "").replace(".webp", "")}`;
 	}
 
-	getFiltered() {}
+	getFiltered() { }
 }

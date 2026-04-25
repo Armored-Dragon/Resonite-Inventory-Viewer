@@ -1,22 +1,22 @@
-const dropEventsArr = ["dragenter", "dragover"];
 const dropZone = document.querySelector("#upload-area");
-let resonite = new Resonite();
-
 const inventoryFolderContainer = document.querySelector("#folder-container");
 const inventoryItemContainer = document.querySelector("#item-container");
 const dirContainer = document.querySelector("#dir-container");
 
-const inventoryFolderTemplate = document.querySelector(
-	"#folder-listing-template",
-);
+const inventoryFolderTemplate = document.querySelector("#folder-listing-template");
 const inventoryItemTemplate = document.querySelector("#item-listing-template");
 const dirTemplate = document.querySelector("#dir-listing-template");
 
-let resoniteItemTree = {};
+const itemsCountValue = document.querySelector("#item-count-value");
+const assetsCountValue = document.querySelector("#asset-count-value");
+const usedStorageCountValue = document.querySelector("#used-storage-value");
 
+let resoniteItemTree = {};
 let currentViewingDir = "Inventory";
 
-dropEventsArr.forEach((evt) => {
+let resonite = new Resonite();
+
+["dragenter", "dragover"].forEach((evt) => {
 	dropZone.addEventListener(evt, (e) => e.preventDefault());
 });
 dropZone.addEventListener("dragenter", () => {
@@ -63,8 +63,8 @@ function handleFiles(file) {
 }
 
 function buildItemTree() {
-	for (let a = 0; resonite.assetList.length > a; a++) {
-		const item = resonite.assetList[a];
+	for (let a = 0; resonite.itemList.length > a; a++) {
+		const item = resonite.itemList[a];
 		const pathDir = item.path?.split("\\") || new Array();
 		const lastKey = pathDir[pathDir.length - 1];
 		let currentWorkingDir = resoniteItemTree;
@@ -105,6 +105,14 @@ function showInventoryScreen() {
 
 	dropZone.classList.add("hidden");
 	inventoryScreen.classList.remove("hidden");
+
+	itemsCountValue.innerText = resonite.itemList.length;
+	assetsCountValue.innerText = resonite.assetList.length;
+
+	let usedStorage = 0;
+	resonite.assetList.forEach((asset) => usedStorage += asset.bytes)
+	usedStorageCountValue.innerText = resonite.bytesToMB(usedStorage);
+
 	displaySubfolderInInventoryScreen(resoniteItemTree["Inventory"]);
 }
 

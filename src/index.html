@@ -1,92 +1,94 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="./css/index.css" />
-		<link rel="stylesheet" href="./css/theme.css" />
-		<script src="./js/resonite.js"></script>
-		<link rel="icon" type="image/svg+xml" href="./img/favicon.ico" />
-		<title>Resonite Inventory Viewer</title>
-	</head>
 
-	<body>
-		<noscript>
-			<h1>Javascript is required to use this application.</h1>
-		</noscript>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="./css/index.css" />
+	<link rel="stylesheet" href="./css/theme.css" />
+	<script src="./js/resonite.js"></script>
+	<link rel="icon" type="image/svg+xml" href="./img/favicon.ico" />
+	<title>Resonite Inventory Viewer</title>
+</head>
 
-		<nav class>
-			<div class="logo-area">
-				<img src="./img/armoreddragon.webp" />
-				<span>Resonite Inventory Viewer</span>
+<body>
+	<noscript>
+		<h1>Javascript is required to use this application.</h1>
+	</noscript>
+
+	<nav class>
+		<div class="logo-area">
+			<img src="./img/armoreddragon.webp" />
+			<span>Resonite Inventory Viewer</span>
+		</div>
+		<div class="navigation-container">
+			<a href=""></a>
+		</div>
+	</nav>
+
+	<div class="content">
+		<div id="upload-area" class="file-drop-container">
+			<div>Upload your .json file</div>
+		</div>
+	</div>
+
+	<div id="master-inventory" class="content full-width hidden">
+		<div class="header">
+			<div class="search">
+				<input placeholder="Search for items..." />
+				<a class="btn">
+					<span>Search</span>
+				</a>
 			</div>
-			<div class="navigation-container">
-				<a href=""></a>
+		</div>
+		<div class="header grid-5">
+			<div class="stat">
+				<span class="stat-title">Items</span>
+				<span id="item-count-value" class="stat-value">0</span>
 			</div>
-		</nav>
-
-		<div class="content">
-			<div id="upload-area" class="file-drop-container">
-				<div>Upload your .json file</div>
+			<div class="stat">
+				<span class="stat-title">Total Assets</span>
+				<span id="asset-count-value" class="stat-value">0</span>
+			</div>
+			<div class="stat"></div>
+			<div class="stat"></div>
+			<div class="stat">
+				<span class="stat-title">Used Space</span>
+				<span id="used-storage-value" class="stat-value">0 MiB</span>
 			</div>
 		</div>
 
-		<div id="master-inventory" class="content full-width hidden">
-			<div class="header">
-				<div class="search">
-					<input placeholder="Search for items..." />
-					<a class="btn">
-						<span>Search</span>
-					</a>
-				</div>
-			</div>
-			<div class="header grid-5">
-				<div class="stat">
-					<span class="stat-title">Items</span>
-					<span class="stat-value">0</span>
-				</div>
-				<div class="stat">
-					<span class="stat-title">Total Assets</span>
-					<span class="stat-value">0</span>
-				</div>
-				<div class="stat"></div>
-				<div class="stat"></div>
-				<div class="stat">
-					<span class="stat-title">Used Space</span>
-					<span class="stat-value">0 MiB</span>
-				</div>
-			</div>
-
-			<div id="dir-container" class="header">
-				<div></div>
-			</div>
-			<div class="inventory">
-				<div id="folder-container" class="folder-container"></div>
-				<div id="item-container" class="item-container"></div>
-			</div>
+		<div id="dir-container" class="header">
+			<div></div>
 		</div>
+		<div class="inventory">
+			<div id="folder-container" class="folder-container"></div>
+			<div id="item-container" class="item-container"></div>
+		</div>
+	</div>
 
-		<template id="dir-listing-template">
-			<div class="dir-folder">
-				<span>ERROR</span>
+	<template id="dir-listing-template">
+		<div class="dir-folder">
+			<span>ERROR</span>
+		</div>
+	</template>
+
+	<template id="item-listing-template">
+		<div class="item">
+			<div class="thumbnail">
+				<img src="" />
 			</div>
-		</template>
+			<div class="title">ERROR</div>
+		</div>
+	</template>
 
-		<template id="item-listing-template">
-			<div class="item">
-				<div class="thumbnail">
-					<img src="" />
-				</div>
-				<div class="title">ERROR</div>
-			</div>
-		</template>
+	<template id="folder-listing-template">
+		<div class="folder">
+			<span>ERROR</span>
+		</div>
+	</template>
+</body>
 
-		<template id="folder-listing-template">
-			<div class="folder">
-				<span>ERROR</span>
-			</div>
-		</template>
-	</body>
+<script async src="./js/index.js"></script>
 
-	<script async src="./js/index.js"></script>
 </html>
