@@ -3,7 +3,9 @@ const inventoryFolderContainer = document.querySelector("#folder-container");
 const inventoryItemContainer = document.querySelector("#item-container");
 const dirContainer = document.querySelector("#dir-container");
 
-const inventoryFolderTemplate = document.querySelector("#folder-listing-template");
+const inventoryFolderTemplate = document.querySelector(
+	"#folder-listing-template",
+);
 const inventoryItemTemplate = document.querySelector("#item-listing-template");
 const dirTemplate = document.querySelector("#dir-listing-template");
 
@@ -11,6 +13,7 @@ const itemsCountValue = document.querySelector("#item-count-value");
 const assetsCountValue = document.querySelector("#asset-count-value");
 const usedStorageCountValue = document.querySelector("#used-storage-value");
 
+let usedStorage = 0;
 let resoniteItemTree = {};
 let currentViewingDir = "Inventory";
 
@@ -109,11 +112,39 @@ function showInventoryScreen() {
 	itemsCountValue.innerText = resonite.itemList.length;
 	assetsCountValue.innerText = resonite.assetList.length;
 
-	let usedStorage = 0;
-	resonite.assetList.forEach((asset) => usedStorage += asset.bytes)
+	getIsFreeAssets();
+	resonite.assetList.forEach(async (asset) => {
+		usedStorage += asset.bytes;
+	});
+
 	usedStorageCountValue.innerText = resonite.bytesToMB(usedStorage);
 
 	displaySubfolderInInventoryScreen(resoniteItemTree["Inventory"]);
+}
+
+const requestsPerSecond = 10;
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function getIsFreeAssets() {
+	// DEV: Disable requests when working so we don't make a ton of requests we can't do anything with.
+	// resonite.dontRequest = true;
+	let assetList = resonite.assetList;
+	const interval = 1000 / requestsPerSecond;
+
+	for (const asset of assetList) {
+		const response = await resonite.getAssetIsFree(asset.hash);
+
+		if (response.value) {
+			usedStorage -= asset.bytes;
+			usedStorageCountValue.innerText = resonite.bytesToMB(usedStorage);
+		}
+
+		if (response.skip) {
+			continue;
+		}
+
+		await delay(interval);
+	}
 }
 
 function displaySubfolderInInventoryScreen(obj) {

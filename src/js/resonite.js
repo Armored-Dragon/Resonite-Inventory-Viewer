@@ -2,6 +2,8 @@ class Resonite {
 	constructor() {
 		this.itemList = [];
 		this.assetList = [];
+		this.assetData = {};
+		this.dontRequest = false
 	}
 
 	loadInventoryFromJSON(inventoryJSON) {
@@ -56,22 +58,49 @@ class Resonite {
 		return `${(bytes / 1000000).toFixed(2)} MB`;
 	}
 
-	async getAssetMetadata(hash) {
+	async getAssetIsFree(hash) {
 		// TODO: Error checking
 		const requestUrl = `https://api.resonite.com/assets/${hash}`;
-		const req = await fetch(requestUrl);
+
+		const storageValue = localStorage.getItem(hash)
+
+		// We have this cached ourselves.
+		if (storageValue !== null) {
+			console.log("Was cached.")
+			const assetIsFree = storageValue === "1";
+			return { value: assetIsFree, skip: true }
+		}
+
+		// Third party free asset list.
+		if (freeAssetsEarthmark.includes(hash)) {
+			console.log("From Earthmark asset list.")
+			return { value: true, skip: true };
+		}
+
+		// Debug so we don't make a ton of requests we can not use.
+		if (this.dontRequest) {
+			return { value: false, skip: true };
+		}
+
+		// We do not have this cached.
+		const req = await fetch(requestUrl)
+			.catch(() => {
+				return { value: false, skip: false };
+			});
 
 		if (!req.ok) {
-			return {};
+			return { value: false, skip: false };
 		}
 
 		const result = await req.json();
-		return result;
+		const assetIsFree = result.free;
+		localStorage.setItem(hash, assetIsFree ? "1" : "0")
+
+		return { value: assetIsFree, skip: false };
 	}
 
 	getItemThumbnail(uri) {
 		return `https://assets.resonite.com/${uri.replace("resdb:///", "").replace(".webp", "")}`;
 	}
 
-	getFiltered() { }
 }
